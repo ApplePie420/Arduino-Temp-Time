@@ -64,11 +64,11 @@ void drawOled() {
 
   //Drawt the date, month and day on first line and year on second line
   oled.setFont(u8g_font_9x15);
-  if(currentTime.day() >= 10) {
-    oled.setPrintPos(15,45);
-  } else {
+  oled.setPrintPos(15, 45);
+  if(currentTime.day() < 10) {      //draw "0" if month is lower than 10th (prettier)
+    oled.print("0");
     oled.setPrintPos(25, 45);
-  }
+  } 
   oled.print(currentTime.day());
   oled.setPrintPos(32, 45);
   oled.print(".");
@@ -79,12 +79,25 @@ void drawOled() {
 
   //Draw the time, again, hours and minutes on first line and seconds on second line
   oled.setPrintPos(75,45);
+  if(currentTime.hour() < 10) {     //draw "0" if there is less than 10 hours (prettier)
+    oled.print("0");
+    oled.setPrintPos(85, 45);
+  }
   oled.print(currentTime.hour());
   oled.setPrintPos(90,45);
   oled.print(":");
   oled.setPrintPos(97, 45);
+  if(currentTime.minute() < 10) {   //draw "0" if there is less than 10 minutes (prettier)
+    oled.print("0");
+    oled.setPrintPos(107, 45);
+  } 
   oled.print(currentTime.minute());
+  
   oled.setPrintPos(86, 58);
+  if(currentTime.second() < 10) {   //draw "0" if there is less than 10 seconds (prettier)
+    oled.print("0");
+    oled.setPrintPos(96, 58);
+  }
   oled.print(currentTime.second());
 
   //Draw the temperature box legend
@@ -94,4 +107,3 @@ void drawOled() {
   oled.setPrintPos(117, 35);
   oled.print("48");
 }
-
