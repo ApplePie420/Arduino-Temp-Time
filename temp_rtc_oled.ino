@@ -29,7 +29,6 @@ float currentTemp = 0;
 void setup() {
   Wire.begin();
   rtc.begin();
-  rtc.adjust(DateTime(__DATE__, __TIME__));     //adjust RTC everytime on startup
   oled.setColorIndex(1);                        //tell the OLED to set pixels ON (white)
 }
 
